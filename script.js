@@ -70,7 +70,8 @@ keys.addEventListener("click", e => {
          
         }else if (firstNum != 0) {
           secondNum = parseFloat(displayedNum);          
-          firstNum = operate(firstNum, secondNum, operator);       
+          firstNum = operate(firstNum, secondNum, operator);  
+              
           operator = action;
          
         }
@@ -79,6 +80,8 @@ keys.addEventListener("click", e => {
 
     // action = CLEAR
     if (action === "clear") {
+      firstNum = 0;
+      secondNum = 0;
       display.textContent = "0";
       calculator.dataset.previousKeyType = "clear";
     }

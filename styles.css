@@ -37,7 +37,9 @@ h1 {
     width: 293px;
     height: 2.5em;
     border: 1px solid black;
-        
+    display: flex;  
+    flex-direction: row-reverse;  
+    padding-right: 5px;
 }
 
 .operator {
@@ -54,6 +56,6 @@ h1 {
     margin-bottom: 0.5%;
 }
 
-.operator-box, .number-box  {
+.calculator-keys  {
     text-align: center;
 }

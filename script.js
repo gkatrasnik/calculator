@@ -1,19 +1,19 @@
 // FUNCTIONS
 
 function add(a,b) {
-    return parseInt(a+b);
+    return parseFloat(a+b);
 }
 
 function substract(a,b) {
-  return parseInt(a-b);  
+  return parseFloat(a-b);  
 }
 
 function multiply(a,b) {
-  return parseInt(a*b);  
+  return parseFloat(a*b);  
 }
 
 function divide(a,b) {
-  return parseInt(a/b);  
+  return parseFloat(a/b);  
 }
 
 function operate(numA, numB, operator) {
@@ -46,15 +46,16 @@ keys.addEventListener("click", e => {
     const action = key.dataset.action;   
     const keyContent = key.textContent;
     const displayedNum = display.textContent;
+    const previousKeyType = calculator.dataset.previousKeyType;
 
     // action = NUMBER
     if (!action) {
-      
-      if (displayedNum === "0") {
+      if (displayedNum === "0" || previousKeyType === "operator") {
         display.textContent = keyContent;
       } else {
         display.textContent = displayedNum + keyContent;
       }
+      calculator.dataset.previousKeyType = "number";
     } 
 
     // action = OPERATOR
@@ -66,18 +67,28 @@ keys.addEventListener("click", e => {
         if (firstNum == 0) {
           firstNum = parseFloat(displayedNum);        
           operator = action;
-          display.textContent = "0";
+         
         }else if (firstNum != 0) {
           secondNum = parseFloat(displayedNum);          
           firstNum = operate(firstNum, secondNum, operator);       
           operator = action;
-          display.textContent = "0";
+         
         }
+      calculator.dataset.previousKeyType = "operator";
     }
 
     // action = CLEAR
-    if ( action === "clear") {
+    if (action === "clear") {
       display.textContent = "0";
+      calculator.dataset.previousKeyType = "clear";
+    }
+
+    // action = DECIMAL
+    if (action === "decimal") {
+      if (!displayedNum.includes(".")) {
+        display.textContent = displayedNum + "."
+      }
+      calculator.dataset.previousKeyType = "decimal";
     }
 
     // action = CALCULATE
@@ -86,6 +97,7 @@ keys.addEventListener("click", e => {
       display.textContent = operate(firstNum, secondNum, operator);
       firstNum = 0;
       secondNum = 0;
+      calculator.dataset.previousKeyType = "calculate";
     }
 
   }

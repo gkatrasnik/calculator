@@ -1,12 +1,15 @@
 
+
 body {
     font-family: 'Oxygen', sans-serif;
+    
+    background: linear-gradient(90deg, rgba(31, 248, 219, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%);
 }
 
 h1 {
     font-family: 'Concert One', cursive;
     font-size: 60px;
-}
+}    
 
 .wrapper {
     display:flex;
@@ -16,6 +19,7 @@ h1 {
 }
 
 .container {
+    background: white;
     display:flex;
     flex-direction: column;    
     border: 1px solid black;     
